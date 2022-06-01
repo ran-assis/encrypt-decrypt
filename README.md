@@ -11,6 +11,7 @@ when encrypting, if the file you wish to encrypt is located at the same folder a
 
 when decrypting and choosing a file name, make sure to write the name with the original file extension.
 
-enjoy
 
 for educational purposes only, stay in school 
+
+enjoy
