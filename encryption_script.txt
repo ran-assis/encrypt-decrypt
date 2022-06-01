@@ -1,0 +1,42 @@
+from cryptography.fernet import Fernet
+class encrypt():
+
+    def key_man(self):
+        key = Fernet.generate_key()
+        return key
+
+    def key_make(self, key, key_name):
+        with open(key_name, 'wb') as enc_key:
+            enc_key.write(key)
+
+    def key_use(self, key_name):
+        with open(key_name, 'rb') as enc_key:
+            key = enc_key.read()
+        return key
+
+    def file_enc(self, key, original_file, encrypted_file):
+        f = Fernet(key)
+
+        with open(original_file, 'rb') as file:
+            original = file.read()
+
+        encrypted = f.encrypt(original)
+
+        with open(encrypted_file, 'wb') as file:
+            file.write(encrypted)
+
+
+
+
+encrypt=encrypt()
+
+enc_key=encrypt.key_man()
+
+encrypt.key_make(enc_key, 'enc_key.key')
+
+loaded_key=encrypt.key_use('enc_key.key')
+
+fileloc=input('write file path containing file name:')
+
+encrypt.file_enc(loaded_key, fileloc, 'encrypted_file.txt')
+

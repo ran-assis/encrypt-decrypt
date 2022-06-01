@@ -1,0 +1,20 @@
+from cryptography.fernet import Fernet
+
+
+with open('enc_key.key', 'rb') as enc_key:
+    key = enc_key.read()
+
+print(key)
+
+f = Fernet(key)
+
+file_to_use = input('please enter the name of the file you wish to decrypt:')
+file_name = input('please choose a name for the decrypted file (including file type):')
+with open(file_to_use, 'rb') as encrypted_file:
+    encrypted = encrypted_file.read()
+
+decrypted = f.decrypt(encrypted)
+
+with open(file_name, 'wb') as decrypted_file:
+    decrypted_file.write(decrypted)
+
